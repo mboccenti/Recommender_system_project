@@ -1,0 +1,233 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://unpkg.com/@highlightjs/cdn-assets@10.7.1/styles/default.min.css">
+  </head>
+  <body>
+    <center>
+      <img src="https://gitlab.com/ibm/skills-network/courses/placeholder101/-/raw/master/labs/module%201/images/IDSNlogo.png" width="300" alt="cognitiveclass.ai logo">
+    </center>
+    <h1>Build a course recommender app with streamlit</h1>
+    <p>Estimated time needed: <strong>60</strong> minutes</p>
+    <h2>Objectives</h2>
+    <p>After completing this lab, you will be able to:</p>
+    <ul>
+      <li>
+        <p>Understand and run the provided skeleton recommender app</p>
+      </li>
+      <li>
+        <p>Extend the recommender app by completing model training and prediction methods</p>
+      </li>
+    </ul>
+    <h1>Lab environment setup and preparation</h1>
+    <p>
+      If you plan to develop the app in your local development environments,
+      you need to make sure you have the following:
+    </p>
+    <ul>
+      <li>
+        <p>Your favorite IDE or text editor</p>
+      </li>
+      <li>
+        <p>Python 3.7 - Python 3.9</p>
+      </li>
+      <li>
+        <p>PIP</p>
+      </li>
+      <li>
+        <p>We recommend you create a virtual environment for building the Streamlit apps.</p>
+      </li>
+      <li>
+        <p>Click <a href="https://docs.python.org/3/library/venv.html?utm_medium=Exinfluencer&#x26;utm_source=Exinfluencer&#x26;utm_content=000026UJ&#x26;utm_term=10006555&#x26;utm_id=NA-SkillsNetwork-Channel-SkillsNetworkCoursesIBMML321ENSkillsNetwork817-2022-01-01#module-venv" target="_blank" rel="external">here</a> to learn more about Python virtual environments.</p>
+      </li>
+    </ul>
+    <h1>Personalized Course Recommender app</h1>
+    <p>Download and unzip the provided recommender app template:</p>
+    <pre><code class="hljs language-awk">wget https:<span class="hljs-regexp">//</span>cf-courses-data.s3.us.cloud-object-storage.appdomain.cloud<span class="hljs-regexp">/IBM-ML321EN-SkillsNetwork/</span>labs<span class="hljs-regexp">/module_5/</span>app.zip
+</code></pre>
+    <p></p>
+    <pre><code class="hljs language-stata">unzip <span class="hljs-keyword">app</span>.<span class="hljs-keyword">zip</span>
+<span class="hljs-keyword">rm</span> <span class="hljs-keyword">app</span>.<span class="hljs-keyword">zip</span>
+</code></pre>
+    <p></p>
+    <p>In the unzipped app folder, we can see the following files and directories:</p>
+    <ul>
+      <li><code>data</code> folder contains related datasets such as ratings, course content, similarity matrix, etc.</li>
+      <li><code>backend.py</code> contains backend machine learning functions such as loading datasets, model training, predictions, etc.</li>
+      <li><code>recommender_app.py</code> is the main <code>Streamlit</code> Python script mainly implements the user interactions with the backend machine learning code</li>
+      <li><code>requirements.txt</code> specifying the required Python libraries for the app. You can add more libraries whenever needed</li>
+    </ul>
+    <p>If we run the sample app, you should see the following page pops-up:</p>
+    <p>
+      <img src="https://cf-courses-data.s3.us.cloud-object-storage.appdomain.cloud/IBM-ML321EN-SkillsNetwork/labs/module_5/images/app_ui.png" alt="UI widgets">
+    </p>
+    <p>
+      We also labelled the <code>Streamlit</code> widgets on the above screenshot, and you can
+      check their details in the source code.
+    </p>
+    <p>
+      If take a look at the course selection table, here we used a <code>streamlit-aggrid</code> plugin to create a st_aggrid() widget
+      to better interact with the dataframes. For example, you can easily select, filter, and search the courses you want.
+    </p>
+    <p>The user interactions in this app are pretty straightforward:</p>
+    <ol>
+      <li>As a test user, you first need to search and select the courses you have audited or completed. You can filter courses</li>
+    </ol>
+    <p>via the Filters and Columns menu items on the right side of the <code>aggrid</code>.</p>
+    <p>
+      <img src="https://cf-courses-data.s3.us.cloud-object-storage.appdomain.cloud/IBM-ML321EN-SkillsNetwork/labs/module_5/images/step1.png" alt="">
+    </p>
+    <ol start="3">
+      <li>Then, once you have created a course enrollment list, you can choose which recommender model you want to use to</li>
+    </ol>
+    <p>
+      generate course recommendations. Here in this sample app, we only provided the course similarity based model for demo purpose.
+      You will need to port the model implementation from the notebooks you have completed in the previous labs
+    </p>
+    <p>
+      <img src="https://cf-courses-data.s3.us.cloud-object-storage.appdomain.cloud/IBM-ML321EN-SkillsNetwork/labs/module_5/images/step2.png" alt="">
+    </p>
+    <ol start="4">
+      <li>Depends on your model, you may add different hyper-parameters UI widgets and determine the hyper-parmeters</li>
+    </ol>
+    <p>for training and prediction</p>
+    <p>
+      <img src="https://cf-courses-data.s3.us.cloud-object-storage.appdomain.cloud/IBM-ML321EN-SkillsNetwork/labs/module_5/images/step3.png" alt="">
+    </p>
+    <ol start="4">
+      <li>Depends on your model, you may need to re-train it with new data been added in Step 1.</li>
+    </ol>
+    <p>You will need to port the model training code from the notebooks you have completed earlier.</p>
+    <p>
+      <img src="https://cf-courses-data.s3.us.cloud-object-storage.appdomain.cloud/IBM-ML321EN-SkillsNetwork/labs/module_5/images/step4.png" alt="">
+    </p>
+    <ol start="5">
+      <li>Once you have your model trained, you need to determine the test data for the model to make predictions.</li>
+    </ol>
+    <p>You need to figure out all the unseen/unselected for the test user and estimate the rating using the model.</p>
+    <p>
+      <img src="https://cf-courses-data.s3.us.cloud-object-storage.appdomain.cloud/IBM-ML321EN-SkillsNetwork/labs/module_5/images/step5.png" alt="">
+    </p>
+    <h1>Extend the recommender app by completing model training and prediction methods</h1>
+    <p>
+      Now you can extend this app by porting the model training and prediction code you have done in the previous notebooks. More specifically, you need to modify three
+      places in the app source code:
+    </p>
+    <ol>
+      <li>Add more hyper-parameters widgets.</li>
+    </ol>
+    <p>
+      In the <code>recommender_app.py</code>, find the code area below comment <code># Hyper-parameters for each model</code>.
+      This is the area where we render different UI widgets for receiving hyper-parameter values.
+    </p>
+    <p>
+      For example, we added two sliders bar for only showing the top courses and the threshold to determine
+      if two courses are similar or not.
+    </p>
+    <pre><code class="hljs language-python">params = {}
+<span class="hljs-comment"># Course similarity model</span>
+<span class="hljs-keyword">if</span> model_selection == backend.models[<span class="hljs-number">0</span>]:
+    <span class="hljs-comment"># Add a slide bar for selecting top courses</span>
+    top_courses = st.sidebar.slider(<span class="hljs-string">'Top courses'</span>,
+                                    min_value=<span class="hljs-number">0</span>, max_value=<span class="hljs-number">100</span>,
+                                    value=<span class="hljs-number">10</span>, step=<span class="hljs-number">1</span>)
+    <span class="hljs-comment"># Add a slide bar for choosing similarity threshold</span>
+    course_sim_threshold = st.sidebar.slider(<span class="hljs-string">'Course Similarity Threshold %'</span>,
+                                             min_value=<span class="hljs-number">0</span>, max_value=<span class="hljs-number">100</span>,
+                                             value=<span class="hljs-number">50</span>, step=<span class="hljs-number">10</span>)
+    params[<span class="hljs-string">'top_courses'</span>] = top_courses
+    params[<span class="hljs-string">'sim_threshold'</span>] = course_sim_threshold
+</code></pre>
+    <p></p>
+    <p>
+      All selected parameters will be stored in a Python dictionary called <code>params</code> and be passed into
+      training and prediction functions.
+    </p>
+    <pre><code class="hljs language-python">params = {}
+</code></pre>
+    <p></p>
+    <ol start="2">
+      <li>Add model-specific training code. If you find the code area under <code># Training UI</code>, you should see the</li>
+    </ol>
+    <p>following code snippet:</p>
+    <pre><code class="hljs language-python">st.sidebar.subheader(<span class="hljs-string">'4. Training: '</span>)
+training_button = st.sidebar.button(<span class="hljs-string">"Train Model"</span>)
+training_text = st.sidebar.text(<span class="hljs-string">''</span>)
+<span class="hljs-comment"># Start training process</span>
+<span class="hljs-keyword">if</span> training_button:
+    train(model_selection, params)
+</code></pre>
+    <p></p>
+    <p>
+      Basically, what it does is when you click the <code>training_button</code> button,
+      it calls the <code>backend.train()</code> method via the <code>train()</code> method with a model name and hyper-parameters.
+    </p>
+    <p>Depends on which model is selected, the actual training code can be different.</p>
+    <ol start="3">
+      <li>Add model-specific prediction code. If you find the code area under <code># Prediction UI</code>, you should see the</li>
+    </ol>
+    <p>following code snippet:</p>
+    <pre><code class="hljs language-python"><span class="hljs-comment"># Prediction UI</span>
+st.sidebar.subheader(<span class="hljs-string">'5. Prediction'</span>)
+<span class="hljs-comment"># Start prediction process</span>
+pred_button = st.sidebar.button(<span class="hljs-string">"Recommend New Courses"</span>)
+<span class="hljs-keyword">if</span> pred_button <span class="hljs-keyword">and</span> selected_courses_df.shape[<span class="hljs-number">0</span>] > <span class="hljs-number">0</span>:
+    res_df = predict(model_selection, params)
+    st.table(res_df)
+</code></pre>
+    <p></p>
+    <p>
+      Basically, what it does is when you click the <code>pred_button</code> button,
+      it calls the <code>backend.predict()</code> method via the <code>predict()</code> method with a model name and
+      hyper-parameters.
+    </p>
+    <p>Depends on which model is selected, the actual prediction code can be different.</p>
+    <h1>Reference</h1>
+    <p>You can check the following links for more details about <code>Streamlit</code>:</p>
+    <ul>
+      <li><a href="https://docs.streamlit.io/?utm_medium=Exinfluencer&#x26;utm_source=Exinfluencer&#x26;utm_content=000026UJ&#x26;utm_term=10006555&#x26;utm_id=NA-SkillsNetwork-Channel-SkillsNetworkCoursesIBMML321ENSkillsNetwork817-2022-01-01" target="_blank" rel="external">Streamlit documentation</a></li>
+      <li><a href="https://github.com/PablocFonseca/streamlit-aggrid" target="_blank" rel="external">streamlit-aggrid</a></li>
+    </ul>
+    <h1>Summary</h1>
+    <p>
+      In this lab, you have learned how to extend the recommender template app to include more recommendation models you have built
+      in the previous notebooks.
+    </p>
+    <p>
+      In addition, you are encouraged to modify and improve the template app to better serving and demonstrating
+      your recommendation models.
+    </p>
+    <h2>Authors</h2>
+    <p><a href="https://www.linkedin.com/in/yan-luo-96288783/?utm_medium=Exinfluencer&#x26;utm_source=Exinfluencer&#x26;utm_content=000026UJ&#x26;utm_term=10006555&#x26;utm_id=NA-SkillsNetwork-Channel-SkillsNetworkCoursesIBMML321ENSkillsNetwork817-2022-01-01" target="_blank" rel="external">Yan Luo</a></p>
+    <h3>Other Contributors</h3>
+    <h2>Change Log</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Date (YYYY-MM-DD)</th>
+          <th>Version</th>
+          <th>Changed By</th>
+          <th>Change Description</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>2022-03-22</td>
+          <td>1.0</td>
+          <td>Yan Luo</td>
+          <td>Created initial version of the lab</td>
+        </tr>
+      </tbody>
+    </table>
+    <p>Copyright (c) 2021 IBM Corporation. All rights reserved.</p>
+    <script>window.addEventListener('load', function() {
+snFaculty.inject();
+});</script>
+    <script src="https://skills-network-assets.s3.us.cloud-object-storage.appdomain.cloud/scripts/inject.43989f87.js"></script>
+    <script src="https://unpkg.com/@highlightjs/cdn-assets@10.7.1/highlight.min.js"></script>
+    <script src="https://unpkg.com/highlightjs-badge@0.1.9/highlightjs-badge.min.js"></script>
+  </body>
+</html>

@@ -1,0 +1,223 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://unpkg.com/@highlightjs/cdn-assets@10.7.1/styles/default.min.css">
+  </head>
+  <body>
+    <center>
+      <img src="https://gitlab.com/ibm/skills-network/courses/placeholder101/-/raw/master/labs/module%201/images/IDSNlogo.png" width="300" alt="cognitiveclass.ai logo">
+    </center>
+    <h1>Introduction to <code>Streamlit</code></h1>
+    <p>Estimated time needed: <strong>45</strong> minutes</p>
+    <h2>Objectives</h2>
+    <p>After completing this lab, you will be able to:</p>
+    <ul>
+      <li>
+        <p>Describe the core concepts of <code>streamlit</code> framework</p>
+      </li>
+      <li>
+        <p>Build your first <code>Streamlit</code> app</p>
+      </li>
+    </ul>
+    <h1>Lab environment setup and preparation</h1>
+    <p>
+      If you plan to develop the app in your local development environments,
+      you need to make sure you have the following:
+    </p>
+    <ul>
+      <li>Your favorite IDE or text editor. Note we are developing a Python app with script</li>
+    </ul>
+    <p>files so notebooks like Jupyter Notebook is not very suitable for developing app.</p>
+    <ul>
+      <li>
+        <p>Python 3.7 - Python 3.9</p>
+      </li>
+      <li>
+        <p>PIP</p>
+      </li>
+      <li>
+        <p>We recommend you create a virtual environment for building the Streamlit apps.</p>
+      </li>
+      <li>
+        <p>Click <a href="https://docs.python.org/3/library/venv.html?utm_medium=Exinfluencer&#x26;utm_source=Exinfluencer&#x26;utm_content=000026UJ&#x26;utm_term=10006555&#x26;utm_id=NA-SkillsNetwork-Channel-SkillsNetworkCoursesIBMML321ENSkillsNetwork817-2022-01-01#module-venv" target="_blank" rel="external">here</a> to learn more about Python virtual environments.</p>
+      </li>
+      <li>
+        <p>Download the sample app from here:</p>
+      </li>
+    </ul>
+    <pre><code class="hljs language-awk">https:<span class="hljs-regexp">//</span>cf-courses-data.s3.us.cloud-object-storage.appdomain.cloud<span class="hljs-regexp">/IBM-ML321EN-SkillsNetwork/</span>labs<span class="hljs-regexp">/module_5/</span>first_app.zip
+</code></pre>
+    <p></p>
+    <h2>Install required Python libraries and test the app</h2>
+    <ul>
+      <li>In your terminal, make sure you have Python installed or activated any Python virtual environments.</li>
+    </ul>
+    <p>First cd to the unzipped <code>first_app</code> directory:</p>
+    <pre><code class="hljs language-bash"><span class="hljs-built_in">cd</span> first_app
+</code></pre>
+    <p></p>
+    <p>and install required Python libraries specified in <code>requirements.txt</code> file for this app:</p>
+    <pre><code class="hljs language-basic">pip3 install -r requi<span class="hljs-comment">rements.txt</span>
+</code></pre>
+    <p></p>
+    <p>First, let's run the first app by the following command:</p>
+    <pre><code class="hljs language-routeros">streamlit <span class="hljs-builtin-name">run</span> app.py
+</code></pre>
+    <p></p>
+    <p>If you are on your local environment,</p>
+    <ul>
+      <li>Open your browser and enter URL <code>http://localhost:8501</code></li>
+    </ul>
+    <p>If you are using Skills Network Labs environment (TBD):</p>
+    <h1>Introduction to <code>Streamlit</code></h1>
+    <p>
+      <code>Streamlit</code> is an open-source app framework which allows data scientists and
+      machine learning engineers to quickly build interactive machine learning and data analytics web apps. It is so easy to
+      use that you could turn your Python data and modeling scripts into
+      shareable web apps in minutes, and no web front‑end experience required at all.
+    </p>
+    <h2>Core concepts</h2>
+    <p>Streamlit allows you to write apps the same way as you write Python scripts.</p>
+    <ul>
+      <li>Streamlit reruns your entire Python script from top to bottom if you updated your source code or there is</li>
+    </ul>
+    <p>a user interaction (like clicking a button)</p>
+    <ul>
+      <li>
+        <p>Streamlit can easily display data, charts, maps, which is similar to Jupyter notebook.</p>
+      </li>
+      <li>
+        <p>Streamlit provides a set of UI Widgets like text label, button, slider, checkbox, selectbox, which you can use</p>
+      </li>
+    </ul>
+    <p>to interact with your data and models</p>
+    <ul>
+      <li>
+        <p>Streamlit uses cache to avoid recomputing heavy functions such as loading large csv files.</p>
+      </li>
+      <li>
+        <p>Streamlit supports multiple cloud deployment methods. Once you have built and tested a Streamlit app, you can easily deploy it on many cloud environments to showcase your</p>
+      </li>
+    </ul>
+    <p>work</p>
+    <h2>A simple example app</h2>
+    <p>Now let's build a very simple Streamlit app together to better understand how Streamlit works.</p>
+    <ul>
+      <li>
+        <p>Open the <code>app.py</code> file and you can see an empty script file with only two imports <code>streamlit</code> and <code>pandas</code></p>
+      </li>
+      <li>
+        <p>We can now run the empty app to see. In the terminal, run the following command:</p>
+      </li>
+    </ul>
+    <pre><code class="hljs language-routeros">streamlit <span class="hljs-builtin-name">run</span> app.py
+</code></pre>
+    <p></p>
+    <p>and you should see an empty page.</p>
+    <ul>
+      <li>Then under comment #1, copy the following code snippet to add a Streamlit title widget:</li>
+    </ul>
+    <pre><code class="hljs language-python">st.title(<span class="hljs-string">"This is a sample app"</span>)
+</code></pre>
+    <p></p>
+    <ul>
+      <li>
+        <p>Refresh the page or click the <code>rerun</code> button on the page, and you should see a newly added title</p>
+      </li>
+      <li>
+        <p>Under comment #2, copy the following code snippet to add a button title widget:</p>
+      </li>
+    </ul>
+    <pre><code class="hljs language-python">button1 = st.button(<span class="hljs-string">"Click to show a dataframe"</span>)
+<span class="hljs-built_in">print</span>(button1)
+</code></pre>
+    <p></p>
+    <p>
+      As you can see in the console, the value of button1 is <code>False</code> which means it is not clicked. and if we click the button,
+      The Streamlit app will re-run and the button1 becomes <code>True</code>
+    </p>
+    <pre><code class="hljs language-python">button1 = st.button(<span class="hljs-string">"Click to show a dataframe"</span>)
+<span class="hljs-built_in">print</span>(button1)
+</code></pre>
+    <p></p>
+    <p>Then, we can add the following code snippet to show a simple Pandas dataframe if button1 is clicked:</p>
+    <pre><code class="hljs language-python"><span class="hljs-keyword">if</span> button1:
+    df = pd.DataFrame({
+    <span class="hljs-string">'column1'</span>: [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>],
+    <span class="hljs-string">'column2'</span>: [<span class="hljs-number">10</span>, <span class="hljs-number">20</span>, <span class="hljs-number">30</span>, <span class="hljs-number">40</span>]
+    })
+    <span class="hljs-comment"># Show the Pandas dataframe using st.dataframe() method</span>
+    st.dataframe(df)
+    <span class="hljs-comment"># Visualize the column1 series using st.line_chart() method</span>
+    st.line_chart(df[<span class="hljs-string">'column1'</span>])
+</code></pre>
+    <p></p>
+    <p>
+      Refresh the page and click the button, and you should see a dataframe is displayed as a table using
+      <code>st.dataframe()</code> method and visualized as a line chart using <code>st.line_chart()</code>
+    </p>
+    <ul>
+      <li>Next, under comment #3, let's add two sliders to receive some numerical values from users:</li>
+    </ul>
+    <pre><code class="hljs language-python">slider1 = st.slider(<span class="hljs-string">"Slider1"</span>, min_value=<span class="hljs-number">1</span>, max_value=<span class="hljs-number">10</span>, value=<span class="hljs-number">1</span>)
+<span class="hljs-built_in">print</span>(slider1)
+slider2 = st.slider(<span class="hljs-string">"Slider2"</span>, min_value=<span class="hljs-number">1</span>, max_value=<span class="hljs-number">10</span>, value=<span class="hljs-number">2</span>)
+<span class="hljs-built_in">print</span>(slider2)
+</code></pre>
+    <p></p>
+    <ul>
+      <li>Refresh the page and we can see two sliders are added. From the console, we can see the value of slider1</li>
+    </ul>
+    <p>is 1 and value of slider2 is 2. If we scroll the sliders, their values will be updated accordingly (shown in the console).</p>
+    <ul>
+      <li>Lastly, under comment #4, we can add a text label to show the sum of two sliders:</li>
+    </ul>
+    <pre><code class="hljs language-python"><span class="hljs-comment"># Create a streamlit subheader widget</span>
+st.subheader(<span class="hljs-string">"The sum of slider1 and slider2 is: "</span>)
+st.text(slider1 + slider2)
+</code></pre>
+    <p></p>
+    <h1>Reference</h1>
+    <p>You can check more details in here:</p>
+    <ul>
+      <li><a href="https://docs.streamlit.io/?utm_medium=Exinfluencer&#x26;utm_source=Exinfluencer&#x26;utm_content=000026UJ&#x26;utm_term=10006555&#x26;utm_id=NA-SkillsNetwork-Channel-SkillsNetworkCoursesIBMML321ENSkillsNetwork817-2022-01-01" target="_blank" rel="external">Streamlit documentation</a></li>
+    </ul>
+    <h1>Summary</h1>
+    <p>
+      By now, you should have some basic understanding about how <code>Streamlit</code> works. Next, we can take a look at
+      our course recommender app.
+    </p>
+    <h2>Authors</h2>
+    <p><a href="https://www.linkedin.com/in/yan-luo-96288783/?utm_medium=Exinfluencer&#x26;utm_source=Exinfluencer&#x26;utm_content=000026UJ&#x26;utm_term=10006555&#x26;utm_id=NA-SkillsNetwork-Channel-SkillsNetworkCoursesIBMML321ENSkillsNetwork817-2022-01-01" target="_blank" rel="external">Yan Luo</a></p>
+    <h3>Other Contributors</h3>
+    <h2>Change Log</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Date (YYYY-MM-DD)</th>
+          <th>Version</th>
+          <th>Changed By</th>
+          <th>Change Description</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>2022-03-22</td>
+          <td>1.0</td>
+          <td>Yan Luo</td>
+          <td>Created initial version of the lab</td>
+        </tr>
+      </tbody>
+    </table>
+    <p>Copyright (c) 2021 IBM Corporation. All rights reserved.</p>
+    <script>window.addEventListener('load', function() {
+snFaculty.inject();
+});</script>
+    <script src="https://skills-network-assets.s3.us.cloud-object-storage.appdomain.cloud/scripts/inject.43989f87.js"></script>
+    <script src="https://unpkg.com/@highlightjs/cdn-assets@10.7.1/highlight.min.js"></script>
+    <script src="https://unpkg.com/highlightjs-badge@0.1.9/highlightjs-badge.min.js"></script>
+  </body>
+</html>
