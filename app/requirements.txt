@@ -1,4 +1,7 @@
 numpy
 pandas
+scikit-learn
+scikit-surprise
+tensorflow
 streamlit
-streamlit-aggrid==0.2.2-2
+streamlit-aggrid
